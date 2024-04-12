@@ -6,11 +6,8 @@ on:
       - main
 
 jobs:
-  verify:
-    uses: ./.github/workflows/verify.yml
-
-  release-please:
-    needs: verify
+  push:
+    name: Push
     runs-on: ubuntu-latest
     steps:
       - name: Build docker image

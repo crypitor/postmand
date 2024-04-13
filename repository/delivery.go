@@ -50,8 +50,8 @@ func dispatchToURL(webhook *postmand.Webhook, delivery *postmand.Delivery) dispa
 		request.Header.Set("X-Hub-Signature", hex.EncodeToString(hash.Sum(nil)))
 	}
 
-	if webhook.Authorization != "" {
-		request.Header.Set("Authorization", webhook.Authorization)
+	if webhook.AuthorizationToken != "" {
+		request.Header.Set("Authorization", webhook.AuthorizationToken)
 	}
 
 	// Create request dump

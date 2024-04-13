@@ -25,7 +25,7 @@ func makeWebhook() postmand.Webhook {
 		ContentType:            "application/json",
 		ValidStatusCodes:       pq.Int32Array{200, 201},
 		SecretToken:            "",
-		Authorization:          "",
+		AuthorizationToken:     "",
 		Active:                 true,
 		MaxDeliveryAttempts:    1,
 		DeliveryAttemptTimeout: 1,

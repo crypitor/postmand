@@ -258,3 +258,8 @@ All environment variables is defined on file local.env.
 ```
 docker build -f Dockerfile -t postmand .
 ```
+
+## How to view API
+access https://generator.swagger.io/  
+
+add URL: https://raw.githubusercontent.com/crypitor/postmand/main/docs/swagger.yaml

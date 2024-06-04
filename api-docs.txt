@@ -1,0 +1,39 @@
+# Webhook Service API
+## Create 
+
+curl --location --request POST 'http://localhost:8000/v1/webhooks' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "Http post",
+    "url": "https://webhook.site/c98ef6a1-a38b-4d63-91f3-8c150a376a4e",
+    "content_type": "application/json",
+    "valid_status_codes": [
+        200,
+        201
+    ],
+    "secret_token": "my-secret-token",
+    "active": true,
+    "max_delivery_attempts": 5,
+    "delivery_attempt_timeout": 1,
+    "retry_min_backoff": 10,
+    "retry_max_backoff": 60
+}'
+
+{"id":"dc2bacdc-f124-4932-b5db-b68f6b4721a0","name":"Http post","url":"https://play.svix.com/in/e_uFxcE36nfJ1jwdfILoy3KiMJOnc/","content_type":"application/json","valid_status_codes":[200,201],"secret_token":"my-secret-token","active":true,"max_delivery_attempts":5,"delivery_attempt_timeout":1,"retry_min_backoff":10,"retry_max_backoff":60,"created_at":"2024-03-24T04:52:46.75612936Z","updated_at":"2024-03-24T04:52:46.75612936Z"}
+
+curl --location --request POST 'http://localhost:8000/v1/deliveries' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "webhook_id": "dc2bacdc-f124-4932-b5db-b68f6b4721a0",
+    "payload": {"success": true}
+}'
+
+
+{"id":"2278765c-7daa-4b84-a489-b7f242af0917","webhook_id":"dc2bacdc-f124-4932-b5db-b68f6b4721a0","payload":"{\"success1\": true}","scheduled_at":"2024-03-24T05:44:30.160385163Z","delive
+ry_attempts":0,"status":"pending","created_at":"2024-03-24T05:44:30.160385163Z","updated_at":"2024-03-24T05:44:30.160385163Z"}
+
+
+Get deliveries:[curl --location --request GET 'http://localhost:8000/v1/deliveries?webhook_id=2278765c-7daa-4b84-a489-b7f242af0917']
+
+Get delivery
+curl --location --request GET 'http://localhost:8000/v1/deliveries/2278765c-7daa-4b84-a489-b7f242af0917'
